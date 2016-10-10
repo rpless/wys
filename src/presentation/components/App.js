@@ -20,7 +20,7 @@ import React from 'react'
 import LoginView from './LoginView'
 
 const App = () => (
-  <div>
+  <div className="app">
     <LoginView />
   </div>
 )

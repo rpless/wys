@@ -21,7 +21,8 @@ import LoadableFinancialPlanListView from '../containers/LoadableFinancialPlanLi
 
 const LoginView = (props) => {
   return (
-    <div>
+    <div className="login-view">
+      <h1>Financial Plans</h1>
       <LoadableFinancialPlanListView />
     </div>
   )

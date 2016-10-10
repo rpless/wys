@@ -15,36 +15,35 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Wys. If not, see <http://www.gnu.org/licenses/>.
 */
+$background-color: #f4f4f4;
+$login-item-color: #f4f4f4;
 
-.personal-balance-sheet {
-  display: flex;
-  justify-content: space-around;
+html {
+  background-color: $login-item-color;
 }
 
-.balance-sheet-header {
+.app {
   display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
+  justify-content: center;
 
-  button {
-    margin-left: 1em;
+  .login-view {
+    width: 40%;
+    ul {
+      list-style: none;
+      padding: 0;
+      li {
+        background-color: $login-item-color;
+        font-size: 1.5em;
+        padding: 10px;
+        &:hover {
+          background-color: darken($login-item-color, 10);
+        }
+      }
+      li:not(:first-child) {
+        border-top: solid;
+        border-width: thin;
+        border-color: black;
+      }
+    }
   }
 }
-
-.balance-sheet-table {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0 0 3em 0;
-  padding: 0;
-}
-
-.balance-sheet-table-cell {
-  box-sizing: border-box;
-  flex-grow: 1;
-  width: 100%;
-  padding: 0.4em 1.2em;
-  overflow: hidden;
-  list-style: none;
-}
-
-.balance-sheet-table--2cols > .balance-sheet-table-cell  { width: 50%; }
