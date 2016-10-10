@@ -16,24 +16,13 @@ You should have received a copy of the GNU General Public License
 along with Wys. If not, see <http://www.gnu.org/licenses/>.
 */
 
-// @flow
-import type { LoginEvent } from './actions/events'
-import R from 'ramda'
-import { LOADING_FINANCIAL_PLANS, LOADED_FINANCIAL_PLANS } from './actions/events'
-import { combineReducers } from 'redux'
+import React from 'react'
+import LoginView from './LoginView'
 
-const intialPlans = []
+const App = () => (
+  <div>
+    <LoginView />
+  </div>
+)
 
-function plans(state: Array<StoredFinancialPlan> = intialPlans, action: LoginEvent) {
-  switch (action.type) {
-    case LOADING_FINANCIAL_PLANS: return state
-    case LOADED_FINANCIAL_PLANS:  return R.concat(state, action.plans)
-    default: return state
-  }
-}
-
-const rootReducer = combineReducers({
-  plans: plans
-})
-
-export default rootReducer
+export default App

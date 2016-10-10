@@ -16,26 +16,7 @@ You should have received a copy of the GNU General Public License
 along with Wys. If not, see <http://www.gnu.org/licenses/>.
 */
 
-require('../static/sass/main.scss');
+import App from './components/App'
+import wysReducer from './reducers'
 
-import React from 'react'
-import { render } from 'react-dom'
-import { Provider } from 'react-redux'
-import { createStore, applyMiddleware } from 'redux'
-import thunk from 'redux-thunk'
-import { App, wysReducer } from './presentation'
-
-import { loadFinancialPlans } from './presentation/actions/commands'
-import { storedFinancialPlanService } from './common'
-
-let store = createStore(wysReducer, applyMiddleware(thunk))
-
-render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root')
-)
-
-// Load the stored plans.
-loadFinancialPlans(storedFinancialPlanService)(store.dispatch)
+export { App, wysReducer }

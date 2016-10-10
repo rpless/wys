@@ -16,26 +16,24 @@ You should have received a copy of the GNU General Public License
 along with Wys. If not, see <http://www.gnu.org/licenses/>.
 */
 
-require('../static/sass/main.scss');
+// @flow
+import type { LoginEvent } from '../actions/events'
+import R from 'ramda'
+import { LOADING_FINANCIAL_PLANS, LOADED_FINANCIAL_PLANS } from '../actions/events'
+import { combineReducers } from 'redux'
 
-import React from 'react'
-import { render } from 'react-dom'
-import { Provider } from 'react-redux'
-import { createStore, applyMiddleware } from 'redux'
-import thunk from 'redux-thunk'
-import { App, wysReducer } from './presentation'
+const intialPlans = []
 
-import { loadFinancialPlans } from './presentation/actions/commands'
-import { storedFinancialPlanService } from './common'
+function plans(state: Array<StoredFinancialPlan> = intialPlans, action: LoginEvent) {
+  switch (action.type) {
+    case LOADING_FINANCIAL_PLANS: return state
+    case LOADED_FINANCIAL_PLANS:  return R.concat(state, action.plans)
+    default: return state
+  }
+}
 
-let store = createStore(wysReducer, applyMiddleware(thunk))
+const rootReducer = combineReducers({
+  plans: plans
+})
 
-render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root')
-)
-
-// Load the stored plans.
-loadFinancialPlans(storedFinancialPlanService)(store.dispatch)
+export default rootReducer

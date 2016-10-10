@@ -21,7 +21,7 @@ const chaiAsPromised = require("chai-as-promised")
 chai.use(chaiAsPromised)
 const should = chai.should()
 
-import reducer from '../../../src/presentation/reducers'
+import reducer from '../../../src/presentation/reducers/reducers'
 import { loadingFinancialPlans, financialPlansLoaded } from '../../../src/presentation/actions/events'
 
 describe('The Login Reducer', function() {
@@ -35,6 +35,6 @@ describe('The Login Reducer', function() {
     const planState = []
     const newPlans = [{ name: 'plan' }]
     const result = reducer(planState, financialPlansLoaded(newPlans))
-    result.should.be.deep.equal({ plans: [] })
+    result.should.be.deep.equal({ plans: [ { name: 'plan' } ] })
   })
 })
