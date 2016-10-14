@@ -24,9 +24,7 @@ import {
   CREATING_FINANCIAL_PLANS, CREATED_FINANCIAL_PLANS } from '../actions/events'
 import { combineReducers } from 'redux'
 
-const intialPlans = []
-
-function plans(state: Array<StoredFinancialPlan> = intialPlans, action: LoginEvent) {
+function plans(state: Array<StoredFinancialPlan> = [], action: LoginEvent) {
   switch (action.type) {
     case CREATING_FINANCIAL_PLANS:
     case LOADING_FINANCIAL_PLANS: return state
@@ -36,8 +34,6 @@ function plans(state: Array<StoredFinancialPlan> = intialPlans, action: LoginEve
   }
 }
 
-const rootReducer = combineReducers({
-  plans: plans
-})
+const rootReducer = combineReducers({ plans: plans })
 
 export default rootReducer

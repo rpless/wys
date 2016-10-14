@@ -26,13 +26,13 @@ import { loadingFinancialPlans, financialPlansLoaded } from '../../../src/presen
 
 describe('The Login Reducer', function() {
   it('should transform add loaded financial plans when LoadingFinancialPlans', function() {
-    const planState = []
+    const planState = { plans: [] }
     const result = reducer(planState, loadingFinancialPlans)
     result.should.be.deep.equal({ plans: [] })
   })
 
   it('should add loaded financial plans on a LoadedFinancialPlans', function() {
-    const planState = []
+    const planState = { plans: [] }
     const newPlans = [{ name: 'plan' }]
     const result = reducer(planState, financialPlansLoaded(newPlans))
     result.should.be.deep.equal({ plans: [ { name: 'plan' } ] })
