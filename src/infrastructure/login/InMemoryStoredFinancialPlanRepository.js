@@ -16,14 +16,20 @@ You should have received a copy of the GNU General Public License
 along with Wys. If not, see <http://www.gnu.org/licenses/>.
 */
 
-export const inMemoryStoredPlanRepo = {
-  loadableFinancialPlans: () => {
-    return Promise.resolve([ { name: 'Plan 1' }, { name: 'Plan 2' }])
-  },
+export function inMemoryStoredPlanRepo() {
+  const plans = []
+  return {
+    loadableFinancialPlans: () => {
+      return Promise.resolve(plans)
+    },
 
-  loadFinancialPlan: (plan, password) => {
-    return Promise.resolve({})
-  },
+    loadFinancialPlan: (plan, password) => {
+      return Promise.resolve(R.find(R.propEq('name', plan))(plans))
+    },
 
-  createFinancialPlan: (plan, password) => { return Promise.resolve(plan) }
+    createFinancialPlan: (plan, password) => {
+      plans.push(plan)
+      return Promise.resolve(plan)
+    }
+  }
 }

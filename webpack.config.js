@@ -3,6 +3,7 @@ var webpack = require('webpack');
 module.exports = {
   context: __dirname + '/src',
   entry: './index.js',
+  devtool: 'source-map',
 
   output: {
     filename: 'bundle.js',

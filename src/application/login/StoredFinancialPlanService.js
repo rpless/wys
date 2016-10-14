@@ -20,9 +20,14 @@ along with Wys. If not, see <http://www.gnu.org/licenses/>.
 
 import R from 'ramda'
 
+export type StoredFinancialPlanServiceT = {
+  createPlan: (name: string, password: string) => Promise<Object>,
+  existingFinancialPlans: () => Promise<Array<StoredFinancialPlan>>
+}
+
 export function StoredFinancialPlanService(storedFinancialPlanRepo: StoredFinancialPlanRepository) {
   return {
-    createPlan: (name: string, password: string): Promise<Object> => {
+    createPlan: (name: string, password: string): Promise<StoredFinancialPlan> => {
       return storedFinancialPlanRepo.loadableFinancialPlans()
         .then((existingPlans) => {
           if (canCreatePlan(name)(existingPlans)) {

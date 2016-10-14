@@ -38,4 +38,4 @@ render(
 )
 
 // Load the stored plans.
-loadFinancialPlans(storedFinancialPlanService)(store.dispatch)
+store.dispatch(loadFinancialPlans(storedFinancialPlanService))

@@ -29,7 +29,7 @@ import { inMemoryStoredPlanRepo } from './infrastructure/login/InMemoryStoredFin
 // Application Services
 //=====================================
 import { StoredFinancialPlanService } from './application/login/StoredFinancialPlanService'
-const storedFinancialPlanService = StoredFinancialPlanService(inMemoryStoredPlanRepo)
+const storedFinancialPlanService = StoredFinancialPlanService(inMemoryStoredPlanRepo())
 
 //=====================================
 // Wired Services

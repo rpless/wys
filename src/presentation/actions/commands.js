@@ -16,13 +16,26 @@ You should have received a copy of the GNU General Public License
 along with Wys. If not, see <http://www.gnu.org/licenses/>.
 */
 
-import { loadingFinancialPlans, financialPlansLoaded } from './events'
+// @flow
+import type { StoredFinancialPlanServiceT } from '../../application/login/StoredFinancialPlanService'
+import {
+  loadingFinancialPlans, financialPlansLoaded, creatingFinancialPlan, financialPlanCreated
+} from './events'
 
-export function loadFinancialPlans(storedFinancialPlanService: StoredFinancialPlanService) {
-   return (dispatch) => {
+export function loadFinancialPlans(storedFinancialPlanService: StoredFinancialPlanServiceT) {
+   return (dispatch: Function) => {
      dispatch(loadingFinancialPlans)
      storedFinancialPlanService
        .existingFinancialPlans()
        .then((plans) => dispatch(financialPlansLoaded(plans)))
+   }
+}
+
+export function addFinancialPlan(storedFinancialPlanService: StoredFinancialPlanServiceT, name: string, password: string) {
+   return (dispatch: Function) => {
+     dispatch(loadingFinancialPlans)
+     storedFinancialPlanService
+       .createPlan(name, password)
+       .then((plan) => dispatch(financialPlanCreated(plan)))
    }
 }

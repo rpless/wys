@@ -19,14 +19,18 @@ along with Wys. If not, see <http://www.gnu.org/licenses/>.
 // @flow
 import type { LoginEvent } from '../actions/events'
 import R from 'ramda'
-import { LOADING_FINANCIAL_PLANS, LOADED_FINANCIAL_PLANS } from '../actions/events'
+import {
+  LOADING_FINANCIAL_PLANS, LOADED_FINANCIAL_PLANS,
+  CREATING_FINANCIAL_PLANS, CREATED_FINANCIAL_PLANS } from '../actions/events'
 import { combineReducers } from 'redux'
 
 const intialPlans = []
 
 function plans(state: Array<StoredFinancialPlan> = intialPlans, action: LoginEvent) {
   switch (action.type) {
+    case CREATING_FINANCIAL_PLANS:
     case LOADING_FINANCIAL_PLANS: return state
+    case CREATED_FINANCIAL_PLANS: return R.append(action.plan, state)
     case LOADED_FINANCIAL_PLANS:  return R.concat(state, action.plans)
     default: return state
   }

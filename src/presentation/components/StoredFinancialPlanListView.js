@@ -18,6 +18,7 @@ along with Wys. If not, see <http://www.gnu.org/licenses/>.
 
 // @flow
 import React, { PropTypes } from 'react'
+import AddStoredFinancialPlan from '../containers/AddStoredFinancialPlan'
 
 type StoredFinancialPlanListProp = {
   plans: Array<StoredFinancialPlanProp>
@@ -28,14 +29,17 @@ type StoredFinancialPlanProp = {
 
 const StoredFinancialPlanListView = (props: StoredFinancialPlanListProp) => {
   return (
-    <ul>
-      {
-         props.plans.map((plan) => {
-           const planName = plan.name
-           return <li key={planName}>{planName}</li>
-         })
-      }
-    </ul>
+    <div>
+      <ul>
+        {
+           props.plans.map((plan) => {
+             const planName = plan.name
+             return <li key={planName}>{planName}</li>
+           })
+        }
+      </ul>
+      <AddStoredFinancialPlan />
+    </div>
   )
 }
 
